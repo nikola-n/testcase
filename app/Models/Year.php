@@ -18,42 +18,19 @@ class Year extends DB
     public $day;
 
     /**
-     * @param $property
-     * @param $value
-     */
-    public function setProperty($property, $value)
-    {
-        $this->$property = $value;
-    }
-
-    /**
-     * @param $property
-     *
-     * @return mixed
-     */
-    public function getProperty($property)
-    {
-        return $this->$property;
-    }
-
-    /**
      * @return mixed
      */
     public function selectData()
     {
         try {
-            if ($_SERVER['REQUEST_METHOD' == 'GET']) {
-                $sql  = "SELECT * FROM testcase";
-                $stmt = $this->getConnection()->prepare($sql);
-                $stmt->execute();
-                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($data[0] as $dataProperty => $dataValue) {
-                    $this->setProperty($dataProperty, $dataValue);
-                }
-                return var_dump(json_decode(["success" => 1, "data" => $data]));
+            $sql  = "SELECT * FROM testcase";
+            $stmt = $this->getConnection()->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+          
+            return json_encode(["success" => 1, "data" => $data]);
 
-                //return $this;
-            }
+            //return $this;
 
         } catch (PDOException $e) {
             $e->getMessage();
