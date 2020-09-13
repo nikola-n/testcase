@@ -1,13 +1,10 @@
 $(document).ready(function () {
-
-    $('#form').on('click', function (e) {
-        e.preventDefault();
         $.ajax("/app/Models/Year.php", {
-            type: 'GET',
+            type: 'POST',
             // dataType: '',
             success: function (data) {
-                console.log(data.data);
-                var newData = JSON.parse(data);
+                console.log(data);
+                // var newData = JSON.parse(data);
                 //branch_id
                 //
             },
@@ -15,5 +12,4 @@ $(document).ready(function () {
                 $('.table').append('Error:', msg);
             }
         })
-    });
 });
