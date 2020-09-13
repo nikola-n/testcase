@@ -5,8 +5,8 @@ namespace App\Models;
 require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . '/../../database/DbConnection.php';
 
-
 use Database\DbConnection as DB;
+use PDO;
 use PDOException;
 
 class Year extends DB
@@ -14,6 +14,7 @@ class Year extends DB
     use DataOptimisation;
 
     public $year;
+
     public $day;
 
     /**
@@ -33,6 +34,31 @@ class Year extends DB
     public function getProperty($property)
     {
         return $this->$property;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function selectData()
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD' == 'GET']) {
+                $sql  = "SELECT * FROM testcase";
+                $stmt = $this->getConnection()->prepare($sql);
+                $stmt->execute();
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($data[0] as $dataProperty => $dataValue) {
+                    $this->setProperty($dataProperty, $dataValue);
+                }
+                return var_dump(json_decode(["success" => 1, "data" => $data]));
+
+                //return $this;
+            }
+
+        } catch (PDOException $e) {
+            $e->getMessage();
+            die();
+        }
     }
 
     /**
