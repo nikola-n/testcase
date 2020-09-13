@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../public/assets/css/style.css">
     <title>Steets TestCase</title>
 </head>
 
@@ -14,17 +14,17 @@
 
 <div class="container">
     <div class="row d-flex justify-content-center mt-5">
-        <form action="/app/controllers/submited_form.php" method="POST" class="border border-primary rounded p-5">
+        <form action="/app/Controllers/submited_form.php" method="POST" class="border border-primary rounded p-5">
             <div class="form-group">
                 <label class="h1">Please submit the form</label>
             </div>
             <div class="form-group">
                 <label>Enter year:
-                    <input type="text" name="year[]" class="form-control">
+                    <input type="text" name="year" class="form-control">
                 </label>
             </div>
 
-            <input type="text" name="day[]" class="form-control" hidden>
+            <input type="text" name="day" class="form-control" hidden>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-danger">Save</button>

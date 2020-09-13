@@ -2,11 +2,16 @@
 
 namespace Database;
 
+require __DIR__ . '/../vendor/autoload.php';
+
 use PDO;
 
 class DbConnection
 {
 
+    /**
+     * @var \PDO
+     */
     private $connection;
 
     public function __construct()
@@ -14,9 +19,10 @@ class DbConnection
         try {
             $host             = 'localhost';
             $dbName           = 'steets-testcase';
+            $username         = 'root';
             $password         = 'root';
             $options          = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-            $this->connection = new PDO("mysql:$host,dbname=$dbName; $password, $options");
+            $this->connection = new PDO("mysql:host=$host;dbname=$dbName", $username, $password, $options);
         } catch (\PDOException $e) {
             $e->getMessage();
             die();

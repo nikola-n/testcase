@@ -9,6 +9,7 @@
   },
   "require": {
     "ext-pdo": "*",
-    "nesbot/carbon": "^2.39"
+    "nesbot/carbon": "^2.39",
+    "ext-json": "*"
   }
 }
