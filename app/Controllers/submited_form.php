@@ -24,5 +24,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     $year->save();
     
-    header("Location: /views/allYears.php");
+    header("Location: /views/allYears.php?method=list");
 }

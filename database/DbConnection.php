@@ -6,6 +6,12 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use PDO;
 
+try {
+    $db = new PDO('mysql:host=localhost;dbname=steets-testcase', 'root', 'root');
+} catch (\PDOException $th) {
+    echo $th->getMessage();
+}
+
 class DbConnection
 {
 

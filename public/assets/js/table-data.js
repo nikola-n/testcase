@@ -1,15 +1,19 @@
 $(document).ready(function () {
-        $.ajax("/app/Models/Year.php", {
-            type: 'POST',
-            // dataType: '',
-            success: function (data) {
-                console.log(data);
-                // var newData = JSON.parse(data);
-                //branch_id
-                //
-            },
-            error: function (msg) {
-                $('.table').append('Error:', msg);
-            }
-        })
+    listYears();
+
+    function listYears() {
+        $.get('/views/allYears.php?method=list')
+            .then(function (data) {
+                data = JSON.stringify(data);
+            })
+    }
+
+
+    // $('#yearForm').on('click', function () {
+    //     $.get('/app/Controllers/submited_form.php', {
+    //         method: 'list',
+    //     }).done(function (data) {
+    //         listYears();
+    //     })
+    // })
 });

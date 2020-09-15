@@ -1,8 +1,14 @@
 <?php
-//if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-//    include_once __DIR__ . '/../app/Controllers/table_data.php';
-//}
-//?>
+require __DIR__ . '/../database/DbConnection.php';
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'list') {
+    $sql  = "SELECT * FROM testcase";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode($data, true);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,9 +35,9 @@
             </thead>
             <tbody>
             <tr>
-<!--                <td>--><?//= $year->id ?><!--</td>-->
-<!--                <td>--><?//= $year->year ?><!--</td>-->
-<!--                <td>--><?//= $year->day ?><!--</td>-->
+                <!--                <td>--><? //= $year->id ?><!--</td>-->
+                <!--                <td>--><? //= $year->year ?><!--</td>-->
+                <!--                <td>--><? //= $year->day ?><!--</td>-->
             </tr>
             </tbody>
         </table>
