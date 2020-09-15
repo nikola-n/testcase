@@ -12,18 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $html = '';
         foreach ($data as $key => $value) {
             $yearArray = json_decode($value['year']);
-            $dayArray = json_decode($value['day']);
+            $dayArray  = json_decode($value['day']);
             $dataArray = array_combine($yearArray, $dayArray);
 
             foreach ($dataArray as $year => $day) {
-                    $html .= '
+                $html .= '
         <tr>
             <td>' . $value['id'] . '</td>
             <td>' . $year . '</td>
             <td>' . $day . '</td>
         </tr>
         ';
-                }
+            }
         }
     }
     echo json_encode(['html' => $html]);
