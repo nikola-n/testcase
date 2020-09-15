@@ -1,23 +1,5 @@
 <?php
-require __DIR__ . '/../database/DbConnection.php';
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'list') {
-    $sql  = "SELECT * FROM testcase";
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $html = '';
-    foreach ($data as $key => $value) {
-        $years = implode(',', json_decode($value['year']));
-        $days  = implode(',', json_decode($value['day']));
-        $html  .= '
-        <tr>
-            <td>' .$value['year'] . '</td>
-            <td>' . $value['day']. '</td>
-        </tr>
-        ';
-    }
-    echo $html;
-}
+    require __DIR__ . '/../database/DbConnection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'list') {
                 <th>Christmas Day</th>
             </tr>
             </thead>
-            <tbody class="addYears">
+            <tbody>
 
             </tbody>
         </table>

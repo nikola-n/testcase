@@ -2,11 +2,12 @@ $(document).ready(function () {
     listYears();
 
     function listYears() {
-        $.get('/views/allYears.php?method=list')
-            .then(function (data) {
-               var years = JSON.stringify(data);
-                $('.addYears').append(years.html);
-                console.log(years.html);
+        $.get('/app/Controllers/ajax.php?method=list')
+            .done(function (data) {
+                data = JSON.parse(data);
+                console.log(data.html);
+                $('tbody').html(data.html);
+                console.log(data.html);
 
             })
     }

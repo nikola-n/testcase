@@ -8,7 +8,6 @@ require __DIR__ . '/../../database/DbConnection.php';
 use Database\DbConnection as DB;
 use PDO;
 use PDOException;
-use function MongoDB\BSON\toJSON;
 
 class Year extends DB
 {
@@ -24,12 +23,11 @@ class Year extends DB
     public function selectData()
     {
         try {
-            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                $sql  = "SELECT * FROM testcase";
-                $stmt = $this->getConnection()->prepare($sql);
-                $stmt->execute();
-                return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
+            $sql  = "SELECT * FROM testcase";
+            $stmt = $this->getConnection()->prepare($sql);
+            $stmt->execute();
+            return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         } catch (PDOException $e) {
             $e->getMessage();
             die();
