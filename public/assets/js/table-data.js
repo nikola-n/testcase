@@ -4,16 +4,10 @@ $(document).ready(function () {
     function listYears() {
         $.get('/views/allYears.php?method=list')
             .then(function (data) {
-                data = JSON.stringify(data);
+               var years = JSON.stringify(data);
+                $('.addYears').append(years.html);
+                console.log(years.html);
+
             })
     }
-
-
-    // $('#yearForm').on('click', function () {
-    //     $.get('/app/Controllers/submited_form.php', {
-    //         method: 'list',
-    //     }).done(function (data) {
-    //         listYears();
-    //     })
-    // })
 });

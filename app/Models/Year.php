@@ -8,6 +8,7 @@ require __DIR__ . '/../../database/DbConnection.php';
 use Database\DbConnection as DB;
 use PDO;
 use PDOException;
+use function MongoDB\BSON\toJSON;
 
 class Year extends DB
 {

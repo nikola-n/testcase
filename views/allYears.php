@@ -5,8 +5,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'list') {
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    echo json_encode($data, true);
+    $html = '';
+    foreach ($data as $key => $value) {
+        $years = implode(',', json_decode($value['year']));
+        $days  = implode(',', json_decode($value['day']));
+        $html  .= '
+        <tr>
+            <td>' .$value['year'] . '</td>
+            <td>' . $value['day']. '</td>
+        </tr>
+        ';
+    }
+    echo $html;
 }
 ?>
 <!DOCTYPE html>
@@ -33,12 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['method'] == 'list') {
                 <th>Christmas Day</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <!--                <td>--><? //= $year->id ?><!--</td>-->
-                <!--                <td>--><? //= $year->year ?><!--</td>-->
-                <!--                <td>--><? //= $year->day ?><!--</td>-->
-            </tr>
+            <tbody class="addYears">
+
             </tbody>
         </table>
     </div>
